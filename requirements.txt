@@ -1,0 +1,7 @@
+tensorflow-gpu==1.14.0
+tensorboard==1.14.0
+keras==2.2.4
+opencv==4.7.0.72
+numpy==1.21.6
+pillow==5.4.1
+tqdm==4.31.1
