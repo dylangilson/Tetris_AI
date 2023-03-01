@@ -18,7 +18,7 @@ def play():
         k = cv2.waitKey(100)  # 10 milliseconds
         env.render(wait_key=False)
 
-        if k == 27:  # Escape ; exit game
+        if k == 27:  # ESC ; exit game
             break
 
         elif k == 119 or k == 87:  # W ; clockwise rotation
