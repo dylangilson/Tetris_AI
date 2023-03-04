@@ -10,7 +10,6 @@ from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
 import random
-from typing import List, Optional, ValuesView
 
 
 # Deep Q Learning Agent + Maximin
@@ -34,7 +33,7 @@ class DQNAgent:
     """
 
     def __init__(self, state_size, mem_size=10000, discount=0.95, epsilon=1, epsilon_min=0, epsilon_stop_episode=500,
-                 n_neurons=(32, 32), activations=('relu', 'relu', 'linear'), loss='mse', optimizer='adam',
+                 n_neurons=[32, 32], activations=('relu', 'relu', 'linear'), loss='mse', optimizer='adam',
                  replay_start_size=None):
         assert len(activations) == len(n_neurons) + 1
 
@@ -83,21 +82,22 @@ class DQNAgent:
     # return the expected score of a certain state
     def act(self, state):
         state = np.reshape(state, [1, self.state_size])
+
         if random.random() <= self.epsilon:
             return self.random_value()
         else:
             return self.predict_value(state)
 
-    def best_state(self, states: ValuesView[List[int]]) -> List[int]:
-        """Returns the best state for a given collection of states"""
+    # return the best state for a given collection of states
+    def best_state(self, states):
+        max_value = None
+        best_state = None
+
         if random.random() <= self.epsilon:
             return random.choice(list(states))
-        else:
-            max_value: Optional[float] = None
-            best_state: Optional[List[int]] = None
 
+        else:
             for state in states:
-                # ask the neural network about the best value
                 value = self.predict_value(np.reshape(state, [1, self.state_size]))
 
                 if not max_value or value > max_value:

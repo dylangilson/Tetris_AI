@@ -13,8 +13,5 @@ class CustomTensorBoard(TensorBoard):
         super().__init__(**kwargs)
         self.writer = FileWriter(self.log_dir)
 
-    def set_model(self, model):
-        pass
-
     def log(self, step, **stats):
         self._write_logs(stats, step)
