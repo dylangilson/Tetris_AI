@@ -42,7 +42,7 @@ def dqn():
 
     for episode in tqdm(range(episodes)):
         current_state = env.reset()
-        done = False
+        game_over = False
         steps = 0
 
         if render_every and episode % render_every == 0:
@@ -51,7 +51,7 @@ def dqn():
             render = False
 
         # game
-        while not done and (not max_steps or steps < max_steps):
+        while not game_over and (not max_steps or steps < max_steps):
             next_states = env.get_next_states()
             best_state = agent.best_state(next_states.values())
             best_action = None
@@ -61,8 +61,8 @@ def dqn():
                     best_action = action
                     break
 
-            reward, done = env.hard_drop([best_action[0], 0], best_action[1], render=render)
-            agent.add_to_memory(current_state, next_states[best_action], reward, done)
+            reward, game_over = env.hard_drop([best_action[0], 0], best_action[1], render)
+            agent.add_to_memory(current_state, next_states[best_action], reward, game_over)
             current_state = next_states[best_action]
             steps += 1
 
