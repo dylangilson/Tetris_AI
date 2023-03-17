@@ -1,5 +1,5 @@
 # Tetris AI
-&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
 ![training](sample_gameplay/training.gif)
 
 ## Table of Contents
@@ -54,6 +54,7 @@ then running the following command:
 python3 run_model.py
 ```
 
+&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
 ![single player](sample_gameplay/single_player.gif)
 
 ## Dependencies
