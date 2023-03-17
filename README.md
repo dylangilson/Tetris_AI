@@ -1,81 +1,77 @@
-# GameBoy C
+# Tetris AI
 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-![sample1](sample_gameplay/pokemon.gif)
+![training](sample_gameplay/training.gif)
 
 ## Table of Contents
-- [Gameboy C Emulator](#gameboy-c-emulator)
+- [Tetris](#tetris)
 - [Features](#features)
 - [Controls](#controls)
-- [Compilation and Running](#compilation-and-running)
+- [Play Single PLayer](#play-single-player)
+- [Train](#train-model)
+- [Run Model](#run-model)
 - [Dependencies](#dependencies)
-- [Dependency Installation](#dependency-installation)
-- [CPU Speed](#cpu-speed)
-- [References](#references)
 - [License](#license)
 
-## Gameboy C Emulator
-An implementation of a GameBoy (DMG) and a GameBoy Color (GBC) written
-using the C programming language with SDL2 as the graphics and audio handler
+## Tetris
+An implementation of Tetris written using the Python programming language
+with opencv as the graphics handler, NumPy to handle math operations, and
+TensorFlow and Keras for the Deep Learning Model. Maximum score achieved
+through deep learning model was 18136 during iteration 1911
 
 ## Features
-* Original GameBoy Gameplay
-* GameBoy Color Gameplay
-* Audio
-* Optional Controller Input
+* Tetris Single-player gameplay
+* Deep learning model
 
 ## Controls
-* A - A button
-* B - B button
-* Enter - Start button
-* Left OR Right Shift - Select button
-* Arrow Keys - D-Pad
-* ESC - Quit emulator
+* W - Rotate piece 90 degrees clockwise
+* A - Move piece one column to the right
+* S - Move piece one row down
+* D - Move piece one column to the left
+* Space - Hard drop piece
+* ESC - Quit game
 
-## Compilation and Running
-* change directory to the 'src' folder of the project, then running the following commands:
+## Play (Single-player)
+* change directory to the 'src' folder of the project, 
+then running the following command:
 
 ```sh
-make
-./gameboy_c ../roms/<ROM_FILE_NAME>
+python3 play.py
 ```
 
-* IMPORTANT: Only runs on Linux Operating System Distributions
-* IMPORTANT: Ensure the ROM you wish to load is in the 'roms' folder of this project
-* IMPORTANT: Will work with both GameBoy and GameBoy Color ROMs
+## Train Model
+* change directory to the 'src' folder of the project, 
+then running the following command:
 
-<br>
+```sh
+python3 train.py
+```
 
-![sample2](sample_gameplay/zelda.gif) ![sample3](sample_gameplay/tetris.gif)
+## Run Model
+* change directory to the 'src' folder of the project,
+then running the following command:
+
+```sh
+python3 run_model.py
+```
+
+![single player](sample_gameplay/single_player.gif)
 
 ## Dependencies
-* SDL2
-* libpthread
-
-## Dependency Installation
-* Debian Linux Distributions (e.g. Ubuntu):
-	- install SDL2 Kit, SDL2 TTF and build-essential using commands: 
-
 ```sh
-sudo apt install libsdl2-dev
-sudo apt install libsdl2-ttf-dev
-sudo apt install build-essential
+tensorflow-gpu==1.14.0
+tensorboard==1.14.0
+keras==2.2.4
+opencv==4.7.0.72
+numpy==1.21.6
+pillow==5.4.1
+tqdm==4.31.1
 ```
 
-## CPU Speed
-Using line 33 in emulator.h, the CPU speed can be increased 
-to allow for faster gameplayby increasing 1U (default speed)
-to 2U (double speed), 3U (triple speed) etc.
-
-## References
-- [Pan Docs](https://gbdev.io/pandocs/)
-- [Game Boy (LR35902) OP Codes](https://www.pastraiser.com/cpu/gameboy/gameboy_opcodes.html)
-- [Game Boy Complete Technical Refercence](docs/Game%20Boy%20Complete%20Technical%20Reference.pdf)
-- [The Cycle-Accurate Game Boy Docs](docs/The%20Cycle-Accurate%20Game%20Boy%20Docs.pdf)
+* IMPORTANT: Running the saved model will only compile correctly
+using Python 3.7
 
 ## License
 Eliseo Copyright 2023
 <br>
 Code released under the [MIT License](LICENSE)
 <br>
-Sample gameplay images are taken from licensed Nintendo 
-and GameFreak GameBoy and GameBoy Color cartridges
